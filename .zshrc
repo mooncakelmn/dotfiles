@@ -40,14 +40,17 @@ $b brew-cask
 # Tracks your most used directories, based on 'frecency'.
 $b robbyrussell/oh-my-zsh plugins/z
 
-# suggestion as you type
-$b tarruda/zsh-autosuggestions
-
-# nicoulaj's moar completion files for zsh
+# nicoulaj's moar completion files for zsh -- not sure why disabled.
 # $b zsh-users/zsh-completions src
 
 # Syntax highlighting on the readline
 $b zsh-users/zsh-syntax-highlighting
+
+# history search
+$b zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
+
+# suggestions
+$b tarruda/zsh-autosuggestions
 
 # colors for all files!
 $b trapd00r/zsh-syntax-highlighting-filetypes
@@ -56,11 +59,8 @@ $b trapd00r/zsh-syntax-highlighting-filetypes
 $b mafredri/zsh-async
 $b sindresorhus/pure
 
-# history search
-$b zsh-users/zsh-history-substring-search
-
 # Tell antigen that you're done.
-antigen apply
+#antigen apply
 
 ###
 #################################################################################################
@@ -82,6 +82,15 @@ auto-ls () {
 }
 chpwd_functions=( auto-ls $chpwd_functions )
 
+
+# Enable autosuggestions automatically
+zle-line-init() {
+    zle autosuggest-start
+}
+
+zle -N zle-line-init
+
+
 # history mgmt
 # http://www.refining-linux.org/archives/49/ZSH-Gem-15-Shared-history/
 setopt inc_append_history
@@ -99,3 +108,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 # Load default dotfiles
 source ~/.bash_profile
 
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
