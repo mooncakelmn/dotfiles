@@ -7,49 +7,49 @@
 ##############################################################################################################
 ###  backup old machine's key items
 
-mkdir -p ~/migration/home/
-mkdir -p ~/migration/Library/"Application Support"/
-mkdir -p ~/migration/Library/Preferences/
-mkdir -p ~/migration/Library/Application Support/
-mkdir -p ~/migration/rootLibrary/Preferences/SystemConfiguration/
+# mkdir -p ~/migration/home/
+# mkdir -p ~/migration/Library/"Application Support"/
+# mkdir -p ~/migration/Library/Preferences/
+# mkdir -p ~/migration/Library/Application Support/
+# mkdir -p ~/migration/rootLibrary/Preferences/SystemConfiguration/
 
-cd ~/migration
+# cd ~/migration
 
 # what is worth reinstalling?
-brew leaves              > brew-list.txt    # all top-level brew installs
-brew cask list           > cask-list.txt
-npm list -g --depth=0    > npm-g-list.txt
-yarn global ls --depth=0 > yarn-g-list.txt
+# brew leaves              > brew-list.txt    # all top-level brew installs
+# brew cask list           > cask-list.txt
+# npm list -g --depth=0    > npm-g-list.txt
+# yarn global ls --depth=0 > yarn-g-list.txt
 
 # then compare brew-list to what's in `brew.sh`
 #   comm <(sort brew-list.txt) <(sort brew.sh-cleaned-up)
 
 # backup some dotfiles likely not under source control
-cp -Rp \
-    ~/.bash_history \
-    ~/.extra ~/.extra.fish \
-    ~/.gitconfig.local \
-    ~/.gnupg \
-    ~/.nano \
-    ~/.nanorc \
-    ~/.netrc \
-    ~/.ssh \
-    ~/.z   \
-        ~/migration/home
-
-cp -Rp ~/Documents ~/migration
-
-cp -Rp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration/rootLibrary/Preferences/SystemConfiguration/ # wifi
-
-cp -Rp ~/Library/Preferences/net.limechat.LimeChat.plist ~/migration/Library/Preferences/
-cp -Rp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration/Library/Preferences/
-
-cp -Rp ~/Library/Services ~/migration/Library/ # automator stuff
-cp -Rp ~/Library/Fonts ~/migration/Library/ # all those fonts you've installed
+# cp -Rp \
+#     ~/.bash_history \
+#     ~/.extra ~/.extra.fish \
+#     ~/.gitconfig.local \
+#     ~/.gnupg \
+#     ~/.nano \
+#     ~/.nanorc \
+#     ~/.netrc \
+#     ~/.ssh \
+#     ~/.z   \
+#         ~/migration/home
+#
+# cp -Rp ~/Documents ~/migration
+#
+# cp -Rp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration/rootLibrary/Preferences/SystemConfiguration/ # wifi
+#
+# cp -Rp ~/Library/Preferences/net.limechat.LimeChat.plist ~/migration/Library/Preferences/
+# cp -Rp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration/Library/Preferences/
+#
+# cp -Rp ~/Library/Services ~/migration/Library/ # automator stuff
+# cp -Rp ~/Library/Fonts ~/migration/Library/ # all those fonts you've installed
 
 # editor settings & plugins
-cp -Rp ~/Library/Application\ Support/Sublime\ Text\ * ~/migration/Library/"Application Support"
-cp -Rp ~/Library/Application\ Support/Code\ -\ Insider* ~/migration/Library/"Application Support"
+# cp -Rp ~/Library/Application\ Support/Sublime\ Text\ * ~/migration/Library/"Application Support"
+# cp -Rp ~/Library/Application\ Support/Code\ -\ Insider* ~/migration/Library/"Application Support"
 
 # also consider...
 # random git branches you never pushed anywhere?
@@ -76,7 +76,7 @@ cp -Rp ~/Library/Application\ Support/Code\ -\ Insider* ~/migration/Library/"App
 #   sublimetext's is in its Application Support folder
 
 # maybe ~/Pictures and such
-cp -Rp ~/Pictures ~/migration
+# cp -Rp ~/Pictures ~/migration
 
 ### end of old machine backup
 ##############################################################################################################
@@ -87,38 +87,38 @@ cp -Rp ~/Pictures ~/migration
 ### XCode Command Line Tools
 #      thx https://github.com/alrra/dotfiles/blob/ff123ca9b9b/os/os_x/installs/install_xcode.sh
 
-if ! xcode-select --print-path &> /dev/null; then
-
-    # Prompt user to install the XCode Command Line Tools
-    xcode-select --install &> /dev/null
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Wait until the XCode Command Line Tools are installed
-    until xcode-select --print-path &> /dev/null; do
-        sleep 5
-    done
-
-    print_result $? 'Install XCode Command Line Tools'
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Point the `xcode-select` developer directory to
-    # the appropriate directory from within `Xcode.app`
-    # https://github.com/alrra/dotfiles/issues/13
-
-    sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
-    print_result $? 'Make "xcode-select" developer directory point to Xcode'
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Prompt user to agree to the terms of the Xcode license
-    # https://github.com/alrra/dotfiles/issues/10
-
-    sudo xcodebuild -license
-    print_result $? 'Agree with the XCode Command Line Tools licence'
-
-fi
+# if ! xcode-select --print-path &> /dev/null; then
+#
+#     # Prompt user to install the XCode Command Line Tools
+#     xcode-select --install &> /dev/null
+#
+#     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+#     # Wait until the XCode Command Line Tools are installed
+#     until xcode-select --print-path &> /dev/null; do
+#         sleep 5
+#     done
+#
+#     print_result $? 'Install XCode Command Line Tools'
+#
+#     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+#     # Point the `xcode-select` developer directory to
+#     # the appropriate directory from within `Xcode.app`
+#     # https://github.com/alrra/dotfiles/issues/13
+#
+#     sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+#     print_result $? 'Make "xcode-select" developer directory point to Xcode'
+#
+#     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+#     # Prompt user to agree to the terms of the Xcode license
+#     # https://github.com/alrra/dotfiles/issues/10
+#
+#     sudo xcodebuild -license
+#     print_result $? 'Agree with the XCode Command Line Tools licence'
+#
+# fi
 ###
 ##############################################################################################################
 
@@ -147,24 +147,24 @@ export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
 
 # github.com/jamiew/git-friendly
 # the `push` command which copies the github compare URL to my clipboard is heaven
-bash < <( curl https://raw.github.com/jamiew/git-friendly/master/install.sh)
+# bash < <( curl https://raw.github.com/jamiew/git-friendly/master/install.sh)
 
 
 # Type `git open` to open the GitHub page or website for a repository.
-npm install -g git-open
+# npm install -g git-open
 
 # fancy listing of recent branches
-npm install -g git-recent
+# npm install -g git-recent
 
 # sexy git diffs
 npm install -g diff-so-fancy
 
 # trash as the safe `rm` alternative
-npm install --global trash-cli
+# npm install --global trash-cli
 
 # install better nanorc config
 # https://github.com/scopatz/nanorc
-curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
+# curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 
 # github.com/rupa/z   - oh how i love you
 git clone https://github.com/rupa/z.git ~/code/z
@@ -174,7 +174,7 @@ git clone https://github.com/rupa/z.git ~/code/z
 
 # github.com/thebitguru/play-button-itunes-patch
 # disable itunes opening on media keys
-git clone https://github.com/thebitguru/play-button-itunes-patch ~/code/play-button-itunes-patch
+# git clone https://github.com/thebitguru/play-button-itunes-patch ~/code/play-button-itunes-patch
 
 
 # my magic photobooth symlink -> dropbox. I love it.
@@ -186,7 +186,7 @@ git clone https://github.com/thebitguru/play-button-itunes-patch ~/code/play-but
 
 
 # for the c alias (syntax highlighted cat)
-sudo easy_install Pygments
+# sudo easy_install Pygments
 
 
 # change to bash 4 (installed by homebrew)
@@ -203,7 +203,7 @@ echo $BASH_VERSION # should be 4.x not the old 3.2.X
 
 
 # setting up the sublime symlink
-ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+# ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 
 
 ###
@@ -215,16 +215,16 @@ ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/su
 # https://chromium.googlesource.com/chromium/src/+/master/docs/mac_build_instructions.md
 
 # default is (257*1024)
-sudo sysctl kern.maxvnodes=$((512*1024))
+# sudo sysctl kern.maxvnodes=$((512*1024))
 
-echo kern.maxvnodes=$((512*1024)) | sudo tee -a /etc/sysctl.conf
+# echo kern.maxvnodes=$((512*1024)) | sudo tee -a /etc/sysctl.conf
 
 # speed up git status (to run only in chromium repo)
-git config status.showuntrackedfiles no
-git update-index --untracked-cache
+# git config status.showuntrackedfiles no
+# git update-index --untracked-cache
 
 # also this unrelated thing
-git config user.email "paulirish@chromium.org"
+# git config user.email "paulirish@chromium.org"
 
 
 ##############################################################################################################
@@ -238,7 +238,7 @@ git config user.email "paulirish@chromium.org"
 
 # set up osx defaults
 #   maybe something else in here https://github.com/hjuutilainen/dotfiles/blob/master/bin/osx-user-defaults.sh
-sh .osx
+# sh .osx
 
 # setup and run Rescuetime!
 
@@ -255,7 +255,7 @@ sh .osx
 #   now .gitconfig can be shared across all machines and only the .local changes
 
 # symlink it up!
-./symlink-setup.sh
+# ./symlink-setup.sh
 
 # add manual symlink for .ssh/config and probably .config/fish
 
