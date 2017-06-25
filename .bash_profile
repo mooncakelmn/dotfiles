@@ -2,26 +2,26 @@
 # Load our dotfiles like ~/.bash_prompt, etc…
 #   ~/.extra can be used for settings you don’t want to commit,
 #   Use it to configure your PATH, thus it being first in line.
-for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
+for file in ~/.{extra,exports,aliases,functions}; do
     [ -r "$file" ] && source "$file"
 done
 unset file
 
 # to help sublimelinter etc with finding my PATHS
-case $- in
-   *i*) source ~/.extra
-esac
+# case $- in
+#    *i*) source ~/.extra
+# esac
 
 # generic colouriser
-GRC=`which grc`
-if [ "$TERM" != dumb ] && [ -n "$GRC" ]
-    then
-        alias colourify="$GRC -es --colour=auto"
-        alias configure='colourify ./configure'
-        for app in {diff,make,gcc,g++,ping,traceroute}; do
-            alias "$app"='colourify '$app
-    done
-fi
+# GRC=`which grc`
+# if [ "$TERM" != dumb ] && [ -n "$GRC" ]
+#     then
+#         alias colourify="$GRC -es --colour=auto"
+#         alias configure='colourify ./configure'
+#         for app in {diff,make,gcc,g++,ping,traceroute}; do
+#             alias "$app"='colourify '$app
+#     done
+# fi
 
 # highlighting inside manpages and elsewhere
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
@@ -38,7 +38,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 # Enable history expansion with space
 # E.g. typing !!<space> will replace the !! with your last command
-bind Space:magic-space
+# bind Space:magic-space
 
 # Use standard ISO 8601 timestamp
 # %F equivalent to %Y-%m-%d
@@ -55,11 +55,8 @@ type shopt &> /dev/null && shopt -s histappend  # append to history, don't overw
 # Don't record some commands
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 
-# Save multi-line commands as one command
-shopt -s cmdhist
-
 # Save and reload the history after each command finishes
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # ^ the only downside with this is [up] on the readline will go over all history not just this bash session.
 
@@ -68,11 +65,11 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 ##
 ## hooking in other apps…
 ##
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 
 
@@ -102,18 +99,22 @@ if  which brew > /dev/null; then
 fi;
 
 # hub completion
-if  which hub > /dev/null; then
-    source "$(brew --prefix)/etc/bash_completion.d/hub.bash_completion.sh";
-fi;
+# if  which hub > /dev/null; then
+#     source "$(brew --prefix)/etc/bash_completion.d/hub.bash_completion.sh";
+# fi;
 
 # Enable tab completion for `g` by marking it as an alias for `git`
-if type __git_complete &> /dev/null; then
-    __git_complete g __git_main
-fi;
+# if type __git_complete &> /dev/null; then
+#     __git_complete g __git_main
+# fi;
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
-complete -W "NSGlobalDomain" defaults
+# complete -W "NSGlobalDomain" defaults
+
+
+# Save multi-line commands as one command
+shopt -s cmdhist
 
 
 ##

@@ -8,59 +8,56 @@ SAVEHIST=100000
 bindkey -v
 
 
-fpath=( "$HOME/.zfunctions" $fpath )
+#fpath=( "$HOME/.zfunctions" $fpath )
 
 
-# antigen time!
-source ~/code/antigen/antigen.zsh
+# antigen time! (https://github.com/zsh-users/antigen)
+source ~/code/zsh/antigen/antigen.zsh
 
 
 ######################################################################
 ### install some antigen bundles
 
-local b="antigen-bundle"
-
-
 # Don't load the oh-my-zsh's library. Takes too long. No need.
-	# antigen use oh-my-zsh
+# antigen use oh-my-zsh
 
 # Guess what to install when running an unknown command.
-$b command-not-found
+antigen bundle command-not-found
 
 # Helper for extracting different types of archives.
-$b extract
+antigen bundle extract
 
 # atom editor
-$b atom
+antigen bundle atom
 
 # homebrew  - autocomplete on `brew install`
-$b brew
-$b brew-cask
+antigen bundle brew
+antigen bundle brew-cask
 
 # Tracks your most used directories, based on 'frecency'.
-$b robbyrussell/oh-my-zsh plugins/z
+antigen bundle robbyrussell/oh-my-zsh plugins/z
 
 # nicoulaj's moar completion files for zsh -- not sure why disabled.
-# $b zsh-users/zsh-completions src
+# antigen bundle zsh-users/zsh-completions src
 
 # Syntax highlighting on the readline
-$b zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-syntax-highlighting
 
 # history search
-$b zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
+antigen bundle zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
 
 # suggestions
-$b tarruda/zsh-autosuggestions
+antigen bundle tarruda/zsh-autosuggestions
 
 # colors for all files!
-$b trapd00r/zsh-syntax-highlighting-filetypes
+antigen bundle trapd00r/zsh-syntax-highlighting-filetypes
 
 # dont set a theme, because pure does it all
-$b mafredri/zsh-async
-$b sindresorhus/pure
+antigen bundle mafredri/zsh-async
+antigen bundle sindresorhus/pure
 
 # Tell antigen that you're done.
-#antigen apply
+antigen apply
 
 ###
 #################################################################################################
@@ -83,12 +80,12 @@ auto-ls () {
 chpwd_functions=( auto-ls $chpwd_functions )
 
 
-# Enable autosuggestions automatically
-zle-line-init() {
-    zle autosuggest-start
-}
-
-zle -N zle-line-init
+# Enable autosuggestions automatically, no need for latest version
+# zle-line-init() {
+#     zle autosuggest-start
+# }
+#
+# zle -N zle-line-init
 
 
 # history mgmt
@@ -103,12 +100,14 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 # uncomment to finish profiling
 # zprof
 
+# install GUN coreutils first: brew install coreutils
+export PATH="$PATH:$(brew --prefix coreutils)/libexec/gnubin"
 
 
 # Load default dotfiles
 source ~/.bash_profile
 
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
