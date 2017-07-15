@@ -7,9 +7,6 @@
   echo "do not run this script in one go. hit ctrl-c NOW"
   read -n 1
 
-# 1st setup shells
-./robin_setup_shells.sh
-
 # Homebrew
 # install
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -17,6 +14,9 @@
 # install all the things
 ./brew.sh
 ./brew-cask.sh
+
+# setup shells
+./robin_setup_shells.sh
 
 # Node
 # install latest nvm

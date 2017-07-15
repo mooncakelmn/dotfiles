@@ -8,3 +8,6 @@ cp .functions ~/.functions
 cp .exports ~/.exports
 cp .bash_profile ~/.bash_profile
 # copy the file content of .zshrc to ~/.zshrc
+
+# zsh plugin manager - antigen
+curl -L git.io/antigen > antigen.zsh
