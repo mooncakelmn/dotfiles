@@ -32,5 +32,3 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cp ./vimrc ~/.vimrc
 # Then open vim and run `:PluginInstall`
 
-# Git
-npm install -g diff-so-fancy

@@ -77,5 +77,7 @@ brew install ffmpeg --with-libvpx
 #
 brew install zsh
 
+brew install diff-so-fancy
+
 # Remove outdated versions from the cellar
 brew cleanup
