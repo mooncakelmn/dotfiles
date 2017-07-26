@@ -19,6 +19,7 @@ brew cask install rescuetime
 # brew cask install flux
 brew cask install joinme
 brew cask install slack
+brew cask install meld
 
 
 # dev
