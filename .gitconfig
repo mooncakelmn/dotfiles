@@ -1,5 +1,5 @@
 [alias]
-	c = commit -am
+	c = commit -m
 	fpush = push --force
 	s = status
 	sclone = clone --depth=1
