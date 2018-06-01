@@ -60,19 +60,6 @@ export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 
 # ^ the only downside with this is [up] on the readline will go over all history not just this bash session.
 
-
-
-##
-## hooking in other apps…
-##
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-
-# Load RVM into a shell session *as a function*
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-
-
 # z beats cd most of the time. `brew install z`
 zpath="$(brew --prefix)/etc/profile.d/z.sh"
 [ -s $zpath ] && source $zpath
