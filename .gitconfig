@@ -2,6 +2,9 @@
 	c = commit -m
 	fpush = push --force
 	s = status
+  br = branch
+  p = pull
+  a = add
 	sclone = clone --depth=1
 	amend = commit --amend --all
 	hreset = reset --hard
