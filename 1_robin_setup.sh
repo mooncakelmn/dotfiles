@@ -20,11 +20,17 @@
 
 # Node
 # install latest nvm
-# curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+cd ~/
+git clone https://github.com/creationix/nvm.git .nvm
+cd ~/.nvm
+git checkout v0.33.11 # latest stable version
 
 nvm install lts # latest LTS version
 
 brew install yarn --ignore-dependencies # using node of nvm
+
+# rvm https://rvm.io/
+
 
 # Vim
 # vundle
