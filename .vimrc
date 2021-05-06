@@ -61,7 +61,10 @@ set ruler
 set showcmd
 set expandtab
 set splitright
-set diffopt+=vertical
+if &diff
+  set diffopt-=internal
+  set diffopt+=vertical
+endif
 set tabstop=2 shiftwidth=2 softtabstop=2
 set list listchars=tab:»·,trail:·,nbsp:·
 match Error /\t/
