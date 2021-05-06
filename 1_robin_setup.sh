@@ -9,7 +9,7 @@
 
 # Homebrew
 # install
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # install all the things
 ./brew.sh
@@ -21,9 +21,10 @@
 # Node
 # install latest nvm
 cd ~/
-git clone https://github.com/creationix/nvm.git .nvm
+# git clone https://github.com/creationix/nvm.git .nvm
+gh repo clone nvm-sh/nvm .nvm
 cd ~/.nvm
-git checkout v0.33.11 # latest stable version
+git checkout v0.38.0 # latest stable version
 
 nvm install lts # latest LTS version
 
@@ -34,7 +35,8 @@ brew install yarn --ignore-dependencies # using node of nvm
 
 # Vim
 # vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-cp ./vimrc ~/.vimrc
+# git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+gh repo clone VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+cp ./.vimrc ~/.vimrc
 # Then open vim and run `:PluginInstall`
 
