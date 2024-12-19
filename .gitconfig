@@ -21,32 +21,43 @@
 [core]
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
+	pager = delta
 
-[pager]
-	# insanely beautiful diffs ==> npm install -g diff-so-fancy
-	diff = diff-so-fancy | less --tabs=4 -RFX
-	show = diff-so-fancy | less --tabs=4 -RFX
-	branch = false
+[delta]
+	max-line-length = 700
+	syntax-theme = base16
+	file-style = bold yellow ul
+	file-decoration-style = yellow ol ul
+	hunk-header-decoration-style = blue
+	hunk-header-line-number-style = purple bold
 
 [interactive]
-  # disabled until github.com/so-fancy/diff-so-fancy/pull/172 is resolved :(
-	# diffFilter = "diff-so-fancy"
+	diffFilter = delta --color-only --features=interactive
+
+[diff]
+	# Show blocks of moved text of at least 20 alphanumeric characters differently than adds/deletes
+	# https://blog.github.com/2018-04-05-git-217-released/
+	colorMoved = default
+	# Detect copies in addition to renames
+	renames = copies
+	# A la `git submodule summary`
+	submodule = log
 
 # so much color
 [color]
-	ui = always
-[color "diff"]
+	ui = auto
+[color "diff"]  # i still love these choices in 2022.
 	meta = yellow bold
 	commit = green bold
 	frag = magenta bold
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = "red bold 52"
-	newNormal = "green bold"
-	newHighlight = "green bold 22"
+
+	newMoved = cyan dim
+	oldMoved = blue dim
+	newMovedAlternative = cyan italic
+	oldMovedAlternative = blue italic
 [color "branch"]
 	current = yellow reverse
 	local = yellow
@@ -61,23 +72,6 @@
 	tool = opendiff
 	renameLimit = 0
 
-# rewrites of repo paths
-# [url "git@github.com:"]
-# 	insteadOf = "https://github.com/"
-# 	pushInsteadOf = "github:"
-# 	pushInsteadOf = "git://github.com/"
-# 	pushInsteadOf = "https://github.com/"
-#
-# [url "git://github.com/"]
-# 	insteadOf = "github:"
-#
-# [url "git@gist.github.com:"]
-# 	pushInsteadOf = "gist:"
-# 	pushInsteadOf = "git://gist.github.com/"
-#
-# [url "git://gist.github.com/"]
-# 	insteadOf = "gist:"
-
 # correct typos
 [help]
 	autocorrect = 1
@@ -89,12 +83,12 @@
 	# Using Luo for now
 	default = simple
 
+[pull]
+	ff = only
+
 # use separate file for username / github token / etc
 [include]
 	path = ~/.gitconfig.local
-
-#[init]
-#	templatedir = ~/.git_template
 
 [filter "lfs"]
 	clean = git-lfs clean %f
@@ -103,11 +97,6 @@
 
 [fetch]
 	prune = true
-[diff]
-	compactionHeuristic = true
-# [remote "origin"]
-#	fetch = +refs/heads/*:refs/remotes/origin/*
+
 [stash]
 	showPatch = true
-[pull]
-	ff = only
