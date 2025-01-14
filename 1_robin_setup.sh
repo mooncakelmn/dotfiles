@@ -30,6 +30,17 @@
 # Anaconda Navigator: https://www.anaconda.com/products/navigator 
 # Pycharm Community: https://www.jetbrains.com/pycharm/
 # copy xbx_stock_2019
+# anaconda (py 3.7) pycharm (existing interpreter, select  anaconda3/bin/python)
+
+# ~.pip/pip.conf
+#[global]
+#trusted-host = arti.fw.tv
+#index-url = https://arti.fw.tv/api/pypi/pypi/simple
+
+# pip install
+# tushare (1.2.89), js2py (0.71)
+# pip install --force-reinstall -v "pandas==1.5.3"
+# pip install --force-reinstall -v "sqlalchemy==1.4.22"
 
 # Adobe Creative Cloud
 # https://account.adobe.com/products, login with Chrome save username/pwd
