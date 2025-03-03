@@ -22,9 +22,9 @@
 # VSCode
 # files to exlucde: node_modules,backstop_data/,web_portal/.next,web_portal/public,web_portal/.dist_dts,,coverage,.git,.nyc_output
 
-# mysql (Anaconda will install mysql 5.7, cool~ )
+# mysql via homebrew
 # https://formulae.brew.sh/formula/mysql#default
-# Sequel Pro
+# Sequel Ace
 
 # python
 # Anaconda Navigator: https://www.anaconda.com/products/navigator 
@@ -39,6 +39,7 @@
 
 # pip install
 # tushare (1.2.89), js2py (0.71)
+# pip install --force-reinstall -v "numpy==1.26.4"
 # pip install --force-reinstall -v "pandas==1.5.3"
 # pip install --force-reinstall -v "sqlalchemy==1.4.22"
 
